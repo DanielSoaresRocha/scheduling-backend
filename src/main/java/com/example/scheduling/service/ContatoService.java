@@ -3,7 +3,10 @@ package com.example.scheduling.service;
 import com.example.scheduling.model.Contato;
 import com.example.scheduling.repository.ContatoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,6 +27,9 @@ public class ContatoService {
     }
 
     public Contato salvar(Contato contato) {
+        if(contatoRepository.findByCelular(contato.getCelular()) != null){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Já existe um contato com este número de celular.");
+        }
         contato.setDateCadastro(LocalDateTime.now());
         return contatoRepository.save(contato);
     }

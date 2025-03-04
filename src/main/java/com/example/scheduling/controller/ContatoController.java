@@ -3,10 +3,14 @@ package com.example.scheduling.controller;
 import com.example.scheduling.model.Contato;
 import com.example.scheduling.service.ContatoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -29,8 +33,16 @@ public class ContatoController {
     }
 
     @PostMapping
-    public Contato salvar(@RequestBody Contato contato) {
-        return contatoService.salvar(contato);
+    public ResponseEntity<Object> salvar(@RequestBody Contato contato) {
+        try {
+            Contato novoContato = contatoService.salvar(contato);
+            return ResponseEntity.status(HttpStatus.CREATED).body(novoContato);
+        } catch (ResponseStatusException ex) {
+            // Captura a exceção lançada no serviço e retorna a resposta adequada
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("message", ex.getReason());
+            return ResponseEntity.status(ex.getStatusCode()).body(errorResponse);
+        }
     }
 
     @PutMapping("/{id}")
