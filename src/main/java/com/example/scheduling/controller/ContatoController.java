@@ -1,5 +1,6 @@
 package com.example.scheduling.controller;
 
+import com.example.scheduling.dto.ContatoFilterDTO;
 import com.example.scheduling.model.Contato;
 import com.example.scheduling.service.ContatoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,11 @@ public class ContatoController {
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         contatoService.deletar(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/filtrar")
+    public List<Contato> listarContatos(ContatoFilterDTO filtro) {
+        return contatoService.filtrarContatos(filtro);
     }
 }
 

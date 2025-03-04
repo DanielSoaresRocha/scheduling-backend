@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ContatoRepository extends JpaRepository<Contato, Long> {
+public interface ContatoRepository extends JpaRepository<Contato, Long>, ContatoRepositoryCustom {
 
     @Query(value = " SELECT c.* " +
             " FROM desafio.contato c " +
