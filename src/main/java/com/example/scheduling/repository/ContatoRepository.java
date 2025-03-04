@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ContatoRepository extends JpaRepository<Contato, Long>, ContatoRepositoryCustom {
 
@@ -14,5 +16,7 @@ public interface ContatoRepository extends JpaRepository<Contato, Long>, Contato
             " WHERE c.contato_celular like :celular " +
             " limit 1;", nativeQuery = true)
     Contato findByCelular(@Param("celular") String celular);
+
+    List<Contato> findByOrderByNomeAsc();
 
 }

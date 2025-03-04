@@ -20,7 +20,7 @@ public class ContatoService {
     private ContatoRepository contatoRepository;
 
     public List<Contato> listarTodos() {
-        return contatoRepository.findAll();
+        return contatoRepository.findByOrderByNomeAsc();
     }
 
     public Optional<Contato> buscarPorId(Long id) {
