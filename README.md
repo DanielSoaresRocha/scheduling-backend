@@ -1,161 +1,162 @@
-# Scheduling API - Contatos
+# Scheduling API - Contacts
 
-## Descrição
+## Description
 
-Esta é a API de gerenciamento de contatos para o sistema Scheduling. O sistema permite a criação, leitura, atualização e remoção de contatos.
+This is the contact management API for the Scheduling system. The system allows the creation, reading, updating, and deletion of contacts.
 
-## Tecnologias Utilizadas
+## Technologies Used
 
 - Java 17+
 - Spring Boot
 - Spring Web
 - Spring Data JPA
-- Banco de Dados Relacional PostgreSQL
+- Relational Database: PostgreSQL
 
-## Endpoints Disponíveis
+## Available Endpoints
 
-### Listar Todos os Contatos
+### List All Contacts
 
-**GET** `/contatos`
+**GET** `/contacts`
 
-**Resposta:**
+**Response:**
 
 ```json
 [
   {
     "id": 1,
-    "nome": "João Silva",
+    "name": "João Silva",
     "email": "joao@email.com",
-    "telefone": "99999-9999"
+    "phone": "99999-9999"
   }
 ]
 ```
 
 ---
 
-### Buscar Contato por ID
+### Get Contact by ID
 
-**GET** `/contatos/{id}`
+**GET** `/contacts/{id}`
 
-**Resposta:**
+**Response:**
 
 ```json
 {
   "id": 1,
-  "nome": "João Silva",
+  "name": "João Silva",
   "email": "joao@email.com",
-  "telefone": "99999-9999"
+  "phone": "99999-9999"
 }
 ```
 
-Caso não seja encontrado, retorna **404 Not Found**.
+If not found, returns **404 Not Found**.
 
 ---
 
-### Criar um Novo Contato
+### Create a New Contact
 
-**POST** `/contatos`
+**POST** `/contacts`
 
-**Requisição:**
+**Request:**
 
 ```json
 {
-  "nome": "Maria Souza",
+  "name": "Maria Souza",
   "email": "maria@email.com",
-  "telefone": "98888-8888"
+  "phone": "98888-8888"
 }
 ```
 
-**Resposta:**
+**Response:**
 
 ```json
 {
   "id": 2,
-  "nome": "Maria Souza",
+  "name": "Maria Souza",
   "email": "maria@email.com",
-  "telefone": "98888-8888"
+  "phone": "98888-8888"
 }
 ```
 
-Caso haja erro de validação, retorna **400 Bad Request**.
+If there is a validation error, returns **400 Bad Request**.
 
 ---
 
-### Atualizar Contato
+### Update Contact
 
-**PUT** `/contatos/{id}`
+**PUT** `/contacts/{id}`
 
-**Requisição:**
+**Request:**
 
 ```json
 {
-  "nome": "Maria Souza",
+  "name": "Maria Souza",
   "email": "maria.nova@email.com",
-  "telefone": "97777-7777"
+  "phone": "97777-7777"
 }
 ```
 
-**Resposta:**
+**Response:**
 
 ```json
 {
   "id": 2,
-  "nome": "Maria Souza",
+  "name": "Maria Souza",
   "email": "maria.nova@email.com",
-  "telefone": "97777-7777"
+  "phone": "97777-7777"
 }
 ```
 
-Caso o contato não seja encontrado, retorna **404 Not Found**.
+If the contact is not found, returns **404 Not Found**.
 
 ---
 
-### Deletar Contato
+### Delete Contact
 
-**DELETE** `/contatos/{id}`
+**DELETE** `/contacts/{id}`
 
-**Resposta:** **204 No Content**
+**Response:** **204 No Content**
 
-Caso o contato não seja encontrado, retorna **404 Not Found**.
+If the contact is not found, returns **404 Not Found**.
 
 ---
 
-### Filtrar Contatos
+### Filter Contacts
 
-**GET** `/contatos/filtrar`
+**GET** `/contacts/filter`
 
-Aceita filtros como nome, email e telefone via query parameters.
+Accepts filters such as name, email, and phone via query parameters.
 
-**Exemplo:** `/contatos/filtrar?nome=Maria&email=maria@email.com`
+**Example:** `/contacts/filter?name=Maria&email=maria@email.com`
 
-**Resposta:**
+**Response:**
 
 ```json
 [
   {
     "id": 2,
-    "nome": "Maria Souza",
+    "name": "Maria Souza",
     "email": "maria@email.com",
-    "telefone": "98888-8888"
+    "phone": "98888-8888"
   }
 ]
 ```
 
-## Como Rodar o Projeto
+## How to Run the Project
 
-1. Clone este repositório
-2. Configure o banco de dados no `application.properties`
-3. Rode a aplicação com `mvn spring-boot:run` ou pelo seu IDE favorito
-4. A API estará disponível em `http://localhost:8080/contatos`
+1. Clone this repository
+2. Configure the database in `application.properties`
+3. Run the application using `mvn spring-boot:run` or from your favorite IDE
+4. The API will be available at `http://localhost:8080/contacts`
 
 ## License 📝
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT) - see the [LICENSE](LICENSE) file for details.
 
-## Autor
+## Author
 
 <table>
   <tr>
     <td align="center"><a href="https://github.com/DanielSoaresRocha"><img src="https://avatars0.githubusercontent.com/u/43214747?s=400&u=a267d113c5469b84bf87d202cdb7129330e4c865&v=4" width="100px;" alt="Daniel Soares"/><br /><sub><b>Daniel Soares</b></sub></a><br /><a href="https://github.com/DanielSoaresRocha/ESIG-challenge/commits?author=DanielSoaresRocha" title="Code">💻</a></td>
   <tr>
 </table>
+
